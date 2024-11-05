@@ -35,13 +35,13 @@ const getMockAppsConnectionsOpenHandler = (logger) => {
   const mockAppsConnectionsOpen = http.post(
     "https://slack.com/api/apps.connections.open",
     async ({ request, params }) => {
-      if (calls > 50) {
+      if (calls > (process.env.MAX_CALLS || 50)) {
         process.kill(process.pid, "SIGKILL");
       }
       calls++;
       logger.info(`apps.connections.open call count: ${calls}`);
 
-      if (calls < 10) {
+      if (calls < (process.env.RATE_LIMIT_AFTER || 10)) {
         return HttpResponse.json(
           { url: "ws://localhost:3000", ok: true },
           {

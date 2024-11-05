@@ -31,7 +31,7 @@ process.on("SIGINT", () => {
 });
 
 const socketModeReceiver = new SocketModeReceiver({
-  appToken: process.env.APP_TOKEN,
+  appToken: process.env.APP_TOKEN || "mock",
   installerOptions: {
     port: 7101,
     // clientOptions: { retryConfig: { retries: 3 } },
@@ -50,7 +50,7 @@ const socketModeReceiver = new SocketModeReceiver({
 
 const app = new App({
   receiver: socketModeReceiver,
-  token: process.env.BOT_TOKEN,
+  token: process.env.BOT_TOKEN || "mock",
 });
 
 (async () => {

@@ -29,3 +29,7 @@ This experiment simulates a scenario in which the Bolt socket mode client will s
 
 # Run the Experiment
 Execute `npm run start` to start the experiment. The experiment will kill the node process automatically after 50 calls to `apps.connections.open` have been made.
+
+# Environment Variable Options
+- `RATE_LIMIT_AFTER` - the number of times `apps.connections.open` should succeed before being rate limited (default: 10)
+- `MAX_CALLS` - the number of times `apps.connections.open` can be called before the experiment is ended (default: 50)
